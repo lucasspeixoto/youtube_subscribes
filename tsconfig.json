@@ -4,10 +4,9 @@
     "outDir": "./dist/out-tsc",
     "module": "es2020",
     "sourceMap": true,
+    "experimentalDecorators":true,
     "declaration": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "allowJs": true,
     "target": "es5",
     "typeRoots": [

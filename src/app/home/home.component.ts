@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+import { ElectronService } from '.././core/services/electron/electron.service'
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +11,39 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  channelInfo: any
+  channelSubscription: Subscription
 
-  ngOnInit(): void { }
+  constructor(
+    private electronService: ElectronService,
+    private dataService: DataService
+    ) { }
+
+  ngOnInit() {
+    this.channel('UCy-R3H4s0z1HubB_uSiGsHA')
+   }
+
+  minimizeWindow() {
+    this.electronService.window.minimize()
+  }
+
+  closeWindow() {
+    this.electronService.window.destroy()
+  }
+
+  channel(name: string) {
+
+    if (this.channelSubscription) {
+      this.channelSubscription.unsubscribe()
+    }
+
+   this.channelSubscription = this.dataService.getStats(name)
+   .subscribe(
+     (res) => {
+      this.channelInfo = res
+      console.log(res)
+     }
+   )
+  }
 
 }
