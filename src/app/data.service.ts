@@ -8,7 +8,7 @@ import { interval } from 'rxjs';
 })
 export class DataService {
 
-  API_KEY: string = "AIzaSyCVpvv7Oa-bRYvDOK5YSRX3eXRe4ddrsT4"
+  API_KEY: string = "APIKEY"
   API_URL: string
 
   constructor(
